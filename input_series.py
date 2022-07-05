@@ -2,14 +2,14 @@ import sympy
  
 # Input the graph
 # リンクとノードの数を入力
-ss = int(input("秘密情報Sの数字を入力:"))
+secret = int(input("秘密情報Sの数字を入力:"))
 link_length = int(input("リンクの数を入力:"))
 
 # xを算出
 x, y, a, b, s = sympy.symbols('x,y,a,b,s')
-a = 2
+a = 1.5
 b = link_length
-s = ss
+s = secret
 f = (a**(b-1))*x - s
 x = sympy.solve(f)
 print("x="+str(x[0]))
