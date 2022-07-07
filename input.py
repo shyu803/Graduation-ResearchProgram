@@ -201,3 +201,5 @@ link_r[x_num - 1] = xx[0]
 node = {}
 graph2()
 print(link_r[len(link_r)-1])
+
+print("x="+str(xx[0]))
