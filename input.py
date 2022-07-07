@@ -1,8 +1,7 @@
 from timeit import repeat
 import sympy
 
-isEnd = False
- # 重複検知
+# 関数
 def paraize():
     link1 = link.copy()
     for l in range(node_length):
@@ -77,92 +76,128 @@ def serize(i):
     print(link_r)
     print(node)
 
-# Input the graph
-# 0.リンクとノードの数を入力
+def graph0():
+    for i in range(link_length):
+        link_r.append(0)
+        link[int(i)] = [0,0]
+        link[int(i)][0] = int(input("リンク"+str(i)+"番の接続ノードを入力:"))
+        link[int(i)][1] = int(input("リンク"+str(i)+"番の接続ノードを入力:"))
+        link_r[int(i)] = a
+        if(link[int(i)][0]==link[int(i)][1]):
+            print("error")
+        if(link[int(i)][0]>link[int(i)][1]):
+            temp = link[int(i)][0]
+            link[int(i)][0] = link[int(i)][1]
+            link[int(i)][1] = temp
+    x_num = int(input("リンクXの番号を入力:"))
+    link_r[x_num - 1] = x
+    print(link)
+    print(link_r)
+    print(type(link))
+    print(x_num)
+    print("リンクリスト設定完了")
+    num = 0
+    while True:
+        num += 1
+        # 並列チェック
+        paraize()
+        # 次数チェック
+        for i in range(node_length):
+            if 0 < i and i < (node_length - 1):
+                if(len(node[i]) == 2):
+                    serize(i)
+        repeat = len(link)
+        print("whilelink:"+str(len(link)))    
+        print(link_r.count(0),len(link_r))
+        if(link_r.count(0) == (len(link_r) - 1) or num>100):
+            break
+    print("end")
+    print(num)
+    print(link)
+    print(node)
+    print(link_r)
+    print(link_r[len(link_r)-1])
+    print(link_r.count(0),len(link_r))
+
+def graph1():
+    global link, link_r
+    for i in range(link_length):
+        link_r_0.append(0)
+        link_0[int(i)] = [0,0]
+        link_0[int(i)][0] = int(input("リンク"+str(i)+"番の接続ノードを入力:"))
+        link_0[int(i)][1] = int(input("リンク"+str(i)+"番の接続ノードを入力:"))
+        link_r_0[int(i)] = a
+        if(link_0[int(i)][0]==link_0[int(i)][1]):
+            print("error")
+        if(link_0[int(i)][0]>link_0[int(i)][1]):
+            temp = link_0[int(i)][0]
+            link_0[int(i)][0] = link_0[int(i)][1]
+            link_0[int(i)][1] = temp
+    link = link_0.copy()
+    link_r = link_r_0.copy()
+
+def graph2():
+    global repeat
+    repeat = len(link)
+    num = 0
+    while True:
+        num += 1
+        # 並列チェック
+        paraize()
+        # 次数チェック
+        for i in range(node_length):
+            if 0 < i and i < (node_length - 1):
+                if(len(node[i]) == 2):
+                    serize(i)
+        repeat = len(link)
+        print("whilelink:"+str(len(link)))    
+        print(link_r.count(0),len(link_r))
+        if(link_r.count(0) == (len(link_r) - 1) or num>100):
+            break
+    print("end")
+    print(num)
+    print(link)
+    print(node)
+    print(link_r)
+    print(link_r[len(link_r)-1])
+    print(link_r.count(0),len(link_r))
+
+# 0.（初期設定）リンクとノードの数を入力
+x, a, s = sympy.symbols('x,a,s')
 link_length = int(input("リンクの数を入力:"))
 node_length = int(input("ノードの数を入力:"))
 repeat = link_length
-
-# 0.リンク定数a、秘密情報Sを入力
-x, y, a, b, s = sympy.symbols('x,y,a,b,s')
-a= 1.7
+a = 1.7
 s = 10
-b = link_length
-
-# 1.各リンクごとの接続ノードを入力
 link = {}
+link_0 = {}
 link_r=[]
+link_r_0 = []
 node = {}
-for i in range(link_length):
-    link_r.append(0)
-    link[int(i)] = [0,0]
-    link[int(i)][0] = int(input("リンク"+str(i+1)+"番の接続ノードを入力:"))
-    link[int(i)][1] = int(input("リンク"+str(i+1)+"番の接続ノードを入力:"))
-    link_r[int(i)] = a
-    if(link[int(i)][0]==link[int(i)][1]):
-        print("error")
-    if(link[int(i)][0]>link[int(i)][1]):
-        temp = link[int(i)][0]
-        link[int(i)][0] = link[int(i)][1]
-        link[int(i)][1] = temp
+
+# 1.グラフ処理
+graph1()
+x_num = int(input("リンクXの番号を入力:"))
+link_r[x_num - 1] = x
 print(link)
 print(link_r)
 print(type(link))
-## リンクリスト設定完了
+print(x_num)
+print("リンクリスト設定完了")
+graph2()
 
-# 並列チェック
-paraize()
+# 2.xの計算
+f_0 = link_r[len(link_r)-1]
+print(f_0)
+f = f_0 - s
+xx = sympy.solve(f)
+print("x="+str(xx[0]))
 
-num = 0
-while True:
-    num += 1
-    repeat = len(link)
-    # 次数チェック
-    for i in range(node_length):
-        if 0 < i and i < (node_length - 1):
-            if(len(node[i]) == 2):
-                serize(i)
-    paraize()
-    print(link_r.count(0),len(link_r))
-    if(link_r.count(0) == (len(link_r) - 1) or num>100):
-        break
-
-print("end")
-print(num)
-print(link)
-print(node)
-print(link_r)
-print(link_r.count(0),len(link_r))
-
-
-"""
-# xを算出
-m = link_length
-n = link_length
-j = 0
-f = 1
-for i in range(link_length):
-    f = f * link[int(i)][3]
-f = f - s
-print(f)
-x = sympy.solve(f)
-print("x="+str(x[0]))
-
-
-# sが正しく復号できるか検算
-g = 1
-for i in range(link_length):
-    g = g * link[int(i)][3]
-print("s="+str(g))
-
-
-# xを算出(ans)
-
-f = (1-(1-a)*(1-a))*(1-(1-a)*(1-x)) - s
-ans = sympy.solve(f)[0]
-print(ans)
-
-# sが正しく復号できるか検算
-g = (1-(1-a)*(1-a))*(1-(1-a)*(1-ans))
-print(g,type(g))
-"""
+# 3.検算
+print("検算")
+link = link_0.copy()
+link_r = link_r_0.copy()
+link_r[x_num - 1] = xx[0]
+node = {}
+graph2()
+print(link_r[len(link_r)-1])
