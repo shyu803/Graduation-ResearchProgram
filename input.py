@@ -1,5 +1,8 @@
 from timeit import repeat
 import sympy
+import time
+
+start_time = time.perf_counter()
 
 # 関数
 def paraize():
@@ -47,21 +50,32 @@ def paraize():
     print(node)
 
 def serize(i):
-    print("seri"+str(i))
     length = len(link)
+    print("seri"+str(i),length)
+    print(node[i],link[node[i][0]],link[node[i][1]],)
     link_r.append(0)
     if(link[node[i][0]][0] != i):
-        link[length] = [link[node[i][0]][0], link[node[i][1]][1]]
-        node[link[length][0]].remove(node[i][0])
-        node[link[length][0]].append(length)
-        node[link[length][1]].remove(node[i][1])
-        node[link[length][1]].append(length)        
+        temp1 = link[node[i][0]][0]
     else:
-        link[length] = [link[node[i][1]][0], link[node[i][0]][1]]
-        node[link[length][1]].remove(node[i][0])
-        node[link[length][1]].append(length)
+        temp1 = link[node[i][0]][1]
+    if(link[node[i][1]][0] != i):
+        temp2 = link[node[i][1]][0]
+    else:
+        temp2 = link[node[i][1]][1]
+    if(temp1<temp2):
+        link[length] = [temp1, temp2]
+    else:
+        link[length] = [temp2, temp1]
+    if(node[i][0] in node[link[length][0]]):
+        node[link[length][0]].remove(node[i][0])
+    if(node[i][1] in node[link[length][0]]):
         node[link[length][0]].remove(node[i][1])
-        node[link[length][0]].append(length) 
+    if(node[i][0] in node[link[length][1]]):
+        node[link[length][1]].remove(node[i][0])
+    if(node[i][1] in node[link[length][1]]):
+        node[link[length][1]].remove(node[i][1])
+    node[link[length][0]].append(length)
+    node[link[length][1]].append(length)
     link_r[length] = link_r[node[i][0]] * link_r[node[i][1]]
     print(node[i],link[length],link_r[length])
     link[node[i][0]] = [-1, 0]
@@ -152,7 +166,7 @@ def graph2():
         repeat = len(link)
         print("whilelink:"+str(len(link)))    
         print(link_r.count(0),len(link_r))
-        if(link_r.count(0) == (len(link_r) - 1) or num>100):
+        if(link_r.count(0) == (len(link_r) - 1) or num>2):
             break
     print("end")
     print(num)
@@ -164,11 +178,20 @@ def graph2():
 
 # 0.（初期設定）リンクとノードの数を入力
 x, a, s = sympy.symbols('x,a,s')
+
 link_length = int(input("リンクの数を入力:"))
 node_length = int(input("ノードの数を入力:"))
+"""
+link_length = 50
+node_length = 23
 repeat = link_length
+"""
+"""
+a = float(input("数字a:"))
+s = int(input("秘密情報:"))
+"""
 a = 1.7
-s = 10
+s = 100
 link = {}
 link_0 = {}
 link_r=[]
@@ -178,7 +201,7 @@ node = {}
 # 1.グラフ処理
 graph1()
 x_num = int(input("リンクXの番号を入力:"))
-link_r[x_num - 1] = x
+link_r[x_num] = x
 print(link)
 print(link_r)
 print(type(link))
@@ -197,9 +220,11 @@ print("x="+str(xx[0]))
 print("検算")
 link = link_0.copy()
 link_r = link_r_0.copy()
-link_r[x_num - 1] = xx[0]
+link_r[x_num] = xx[0]
 node = {}
-graph2()
+## graph2()
 print(link_r[len(link_r)-1])
 
 print("x="+str(xx[0]))
+elapsed_time0 = time.process_time() - start_time
+print(elapsed_time0)
