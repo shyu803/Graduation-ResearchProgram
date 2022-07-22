@@ -1,5 +1,8 @@
 from timeit import repeat
 import sympy
+import time
+
+start_time = time.perf_counter()
 
 # 関数
 def paraize():
@@ -192,7 +195,7 @@ def graph2():
         repeat = len(link)
         print("whilelink:"+str(len(link)))    
         print(link_r.count(0),len(link_r))
-        if(link_r.count(0) == (len(link_r) - 1) or num>200):
+        if(link_r.count(0) == (len(link_r) - 1) or num>100):
             break
     print("end")
     print(num)
@@ -204,11 +207,18 @@ def graph2():
 
 # 0.（初期設定）リンクとノードの数を入力
 x, a, s = sympy.symbols('x,a,s')
-link_length = 38
-node_length = 16
+
+link_length = 112
+node_length = 60
+"""
 repeat = link_length
-a = 23.1
-s = 87692334
+"""
+"""
+a = float(input("数字a:"))
+s = int(input("秘密情報:"))
+"""
+a = float(input("aを入力:"))
+s = 4378
 link = {}
 link_0 = {}
 link_r=[]
@@ -217,7 +227,8 @@ node = {}
 
 # 1.グラフ処理
 graph1()
-x_num = int(input("リンクXの番号を入力:"))
+## x_num = int(input("リンクXの番号を入力:"))
+x_num = 30
 link_r[x_num] = x
 print(link)
 print(link_r)
@@ -232,15 +243,21 @@ print(f_0)
 f = f_0 - s
 xx = sympy.solve(f)
 print("x="+str(xx[0]))
+print("2.xの計算")
 
 # 3.検算
 print("検算")
 link = link_0.copy()
 link_r = link_r_0.copy()
 link_r[x_num] = xx[0]
-print(x_num,link_r[x_num],link_r)
 node = {}
 graph2()
-print(link_r[len(link_r)-1])
-
+print(link)
+print(node)
+print(link_r)
 print("x="+str(xx[0]))
+print("a="+str(a))
+print("s="+str(s))
+print("S="+str(link_r[len(link_r)-1]))
+elapsed_time0 = time.process_time() - start_time
+print(elapsed_time0)
