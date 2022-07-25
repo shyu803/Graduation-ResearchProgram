@@ -166,7 +166,7 @@ def graph2():
         repeat = len(link)
         print("whilelink:"+str(len(link)))    
         print(link_r.count(0),len(link_r))
-        if(link_r.count(0) == (len(link_r) - 1) or num>2):
+        if(link_r.count(0) == (len(link_r) - 1) or num>50):
             break
     print("end")
     print(num)
@@ -222,7 +222,7 @@ link = link_0.copy()
 link_r = link_r_0.copy()
 link_r[x_num] = xx[0]
 node = {}
-## graph2()
+graph2()
 print(link_r[len(link_r)-1])
 
 print("x="+str(xx[0]))
