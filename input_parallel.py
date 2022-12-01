@@ -3,7 +3,7 @@ import sympy
 # Input the graph
 # リンクとノードの数を入力
 link_length = int(input("リンクの数を入力:"))
-# node_length = int(input("ノードの数を入力:"))
+node_length = int(input("ノードの数を入力:"))
 
 #リンク定数a、秘密情報Sを入力
 x, y, a, b, s = sympy.symbols('x,y,a,b,s')
@@ -17,7 +17,6 @@ for i in range(link_length):
     link[int(i)] = [0,0,1,0]
     link[int(i)][0] = int(input("リンク"+str(i+1)+"番の接続ノードを入力:"))
     link[int(i)][1] = int(input("リンク"+str(i+1)+"番の接続ノードを入力:"))
-    link[int(i)][2] = int(input("リンク"+str(i+1)+"番の並列リンク数を入力:"))
 x_num = int(input("リンクxの番号を入力:")) - 1
 print(x_num)
 for i in range(link_length):
