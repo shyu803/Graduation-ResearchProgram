@@ -2,7 +2,7 @@ from timeit import repeat
 import sympy
 import time
 
-start_time = time.perf_counter()
+start_time = time.time()
 
 # 関数
 def paraize():
@@ -296,7 +296,7 @@ def graph2():
 # 0.（初期設定）リンクとノードの数を入力
 x, a, s = sympy.symbols('x,a,s')
 
-link_length = 112
+link_length = 113
 node_length = 60
 """
 repeat = link_length
@@ -305,8 +305,8 @@ repeat = link_length
 a = float(input("数字a:"))
 s = int(input("秘密情報:"))
 """
-a = 1.7
-s = 43784534511234567890
+a =2.3
+s = 82822181879
 link = {}
 link_0 = {}
 link_r=[]
