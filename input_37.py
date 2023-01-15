@@ -261,3 +261,13 @@ print("s="+str(s))
 print("S="+str(link_r[len(link_r)-1]))
 elapsed_time0 = time.process_time() - start_time
 print(elapsed_time0)
+
+
+print("リンク数："+str(link_length))
+print("Ri="+str(a))
+print("シークレットS="+str(s))
+print("--計算結果--")
+print("Rj="+str(xx[0]))
+print("復号されたS="+str(link_r[len(link_r)-1]))
+end_time = time.time()
+print("計算時間：",str(end_time - start_time)+"秒")

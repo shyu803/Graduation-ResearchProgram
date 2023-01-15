@@ -277,11 +277,11 @@ def graph2():
 
 # 0.（初期設定）リンクとノードの数を入力
 x, a, s = sympy.symbols('x,a,s')
-link_length = 100
-node_length = 49
+link_length = 200
+node_length = 99
 repeat = link_length
 a = 2.5
-s = 334261
+s = 3342
 link = {}
 link_0 = {}
 link_r=[]
@@ -320,3 +320,13 @@ print("x="+str(xx[0]))
 
 end_time = time.time()
 print(start_time,end_time,end_time - start_time)
+
+
+print("リンク数："+str(link_length))
+print("Ri="+str(a))
+print("シークレットS="+str(s))
+print("--計算結果--")
+print("Rj="+str(xx[0]))
+print("復号されたS="+str(link_r[len(link_r)-1]))
+end_time = time.time()
+print("計算時間：",str(end_time - start_time)+"秒")
